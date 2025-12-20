@@ -1,4 +1,4 @@
-# Herklos - OctoBot-Stack - Cursor workspace
+# OctoBot-Stack - Cursor workspace
 
 ## Setup
 
