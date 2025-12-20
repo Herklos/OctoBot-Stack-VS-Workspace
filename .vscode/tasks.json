@@ -2,6 +2,21 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Setup PYTHONPATH",
+      "type": "shell",
+      "command": "echo 'PYTHONPATH configuration defined in task options.env'",
+      "options": {
+        "env": {
+          "PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/Async-Channel:${workspaceFolder}/OctoBot-Tentacles-Manager:${workspaceFolder}/OctoBot-Commons:${workspaceFolder}/OctoBot-Trading:${workspaceFolder}/OctoBot-Backtesting:${workspaceFolder}/OctoBot-Evaluators:${workspaceFolder}/OctoBot-Services:${workspaceFolder}/trading-backend:${workspaceFolder}/OctoBot:${env:PYTHONPATH}"
+        }
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      }
+    },
+    {
       "label": "CCXT: Build polymarket exchange python",
       "type": "shell",
       "command": "npm run emitAPI polymarket && npm run transpileRest polymarket && npm run transpileRest polymarket",
@@ -14,6 +29,23 @@
         "panel": "shared"
       }
     },
+    {
+      "label": "Generate tentacles from OctoBot-Tentacles",
+      "type": "shell",
+      "command": "${command:python.interpreterPath} start.py tentacles -p ../../tentacles_default_export.zip -d ../OctoBot-Tentacles",
+      "dependsOn": ["Setup PYTHONPATH", "CCXT: Build polymarket exchange python"],
+      "options": {
+        "cwd": "${workspaceFolder}/OctoBot",
+        "env": {
+          "PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/Async-Channel:${workspaceFolder}/OctoBot-Tentacles-Manager:${workspaceFolder}/OctoBot-Commons:${workspaceFolder}/OctoBot-Trading:${workspaceFolder}/OctoBot-Backtesting:${workspaceFolder}/OctoBot-Evaluators:${workspaceFolder}/OctoBot-Services:${workspaceFolder}/trading-backend:${workspaceFolder}/OctoBot:${env:PYTHONPATH}"
+        }
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
   ]
 }
 

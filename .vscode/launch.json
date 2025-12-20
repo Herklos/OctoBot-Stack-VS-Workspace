@@ -120,6 +120,7 @@
         "request": "launch",
         "console": "integratedTerminal",
         "program": "${workspaceFolder}/OctoBot/start.py",
+        "preLaunchTask": "Generate tentacles from OctoBot-Tentacles",
         "cwd": "${workspaceFolder}/OctoBot",
         "presentation": {
           "hidden": false,
@@ -214,21 +215,6 @@
         "justMyCode": false,
         "args": [],
         "env": {}
-      }
-    ],
-    "compounds": [
-      {
-        "name": "Generate and Install tentacles",
-        "configurations": [
-          "Generate tentacles from OctoBot-Tentacles",
-          "Install tentacles zip"
-        ],
-        "presentation": {
-          "hidden": false,
-          "group": "OctoBot-Tentacles-Manager",
-          "order": 30
-        },
-        "stopAll": true
       }
     ]
   }
