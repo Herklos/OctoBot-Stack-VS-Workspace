@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CCXT: Build polymarket exchange python",
+      "type": "shell",
+      "command": "npm run emitAPI polymarket && npm run transpileRest polymarket && npm run transpileRest polymarket",
+      "options": {
+        "cwd": "${workspaceFolder}/ccxt"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      }
+    },
+  ]
+}
+

@@ -1,0 +1,234 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+      {
+        "type": "debugpy",
+        "name": "Start OctoBot",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "program": "${workspaceFolder}/OctoBot/start.py",
+        "cwd": "${workspaceFolder}/OctoBot",
+        "presentation": {
+          "hidden": false,
+          "group": "1.Run",
+          "order": 1
+        },
+        "justMyCode": false,
+        "args": [],
+        "env": {}
+      },
+      {
+        "type": "debugpy",
+        "name": "OctoBot additional_tests",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "preLaunchTask": "Install tentacles from OctoBot-Tentacles",
+        "cwd": "${workspaceFolder}/OctoBot",
+        "presentation": {
+          "hidden": false,
+          "group": "2.Test",
+          "order": 20
+        },
+        "justMyCode": false,
+        "args": [
+          "additional_tests",
+          "--no-header",
+          "--disable-warnings",
+          "--show-capture=no",
+          "-v",
+          "-vv",
+          "-k",
+          "polymarket"
+        ],
+        "module": "pytest"
+      },
+      {
+        "type": "debugpy",
+        "name": "OctoBot tests",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}/OctoBot",
+        "preLaunchTask": "Install tentacles from OctoBot-Tentacles",
+        "presentation": {
+          "hidden": false,
+          "group": "2.Test",
+          "order": 20
+        },
+        "justMyCode": false,
+        "args": [
+          "tests",
+          "--no-header",
+          "--disable-warnings",
+          "--show-capture=no",
+          "-v",
+          "-vv",
+          "-k",
+          " "
+        ],
+        "module": "pytest"
+      },
+      {
+        "type": "debugpy",
+        "name": "OctoBot-Tentacles tests trading modes",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}/OctoBot",
+        "presentation": {
+          "hidden": false,
+          "group": "2.Test",
+          "order": 21
+        },
+        "justMyCode": false,
+        "args": [
+          "tentacles/Trading/Mode",
+          "--no-header",
+          "--disable-warnings",
+          "--show-capture=no",
+          "-v",
+          "-vv",
+          "-s",
+          "-k",
+          " "
+        ],
+        "module": "pytest"
+      },
+      {
+        "type": "debugpy",
+        "name": "Generate tentacles from OctoBot-Tentacles",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "program": "${workspaceFolder}/OctoBot/start.py",
+        "preLaunchTask": "CCXT: Build polymarket exchange python",
+        "cwd": "${workspaceFolder}/OctoBot",
+        "presentation": {
+          "hidden": false,
+          "group": "OctoBot-Tentacles-Manager",
+          "order": 31
+        },
+        "justMyCode": false,
+        "args": [
+          "tentacles",
+          "-p",
+          "../../tentacles_default_export.zip",
+          "-d",
+          "../OctoBot-Tentacles"
+        ]
+      },
+      {
+        "type": "debugpy",
+        "name": "Install tentacles zip",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "program": "${workspaceFolder}/OctoBot/start.py",
+        "cwd": "${workspaceFolder}/OctoBot",
+        "presentation": {
+          "hidden": false,
+          "group": "OctoBot-Tentacles-Manager",
+          "order": 32
+        },
+        "justMyCode": false,
+        "args": [
+          "tentacles",
+          "-i",
+          "--all",
+          "--location",
+          "../any_platform.zip"
+        ]
+      },
+      {
+        "type": "debugpy",
+        "name": "Export tentacles to repo",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "program": "${workspaceFolder}/OctoBot/start.py",
+        "cwd": "${workspaceFolder}/OctoBot",
+        "presentation": {
+          "hidden": false,
+          "group": "OctoBot-Tentacles-Manager",
+          "order": 33
+        },
+        "justMyCode": false,
+        "args": [
+          "tentacles",
+          "-e",
+          "../../OctoBot-Tentacles",
+          "OctoBot-Default-Tentacles",
+          "-d",
+          "../OctoBot/tentacles"
+        ]
+      },
+      {
+        "type": "debugpy",
+        "name": "OctoBot repair tentacles",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "program": "${workspaceFolder}/OctoBot/start.py",
+        "cwd": "${workspaceFolder}/OctoBot",
+        "presentation": {
+          "hidden": false,
+          "group": "OctoBot-Tentacles-Manager",
+          "order": 34
+        },
+        "justMyCode": false,
+        "args": [
+          "tentacles",
+          "--repair",
+          "-d",
+          "."
+        ]
+      },
+      {
+        "type": "debugpy",
+        "name": "Export OctoBot-Tentacles to zip",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "program": "${workspaceFolder}/OctoBot/start.py",
+        "cwd": "${workspaceFolder}/OctoBot",
+        "presentation": {
+          "hidden": false,
+          "group": "OctoBot-Tentacles-Manager",
+          "order": 35
+        },
+        "justMyCode": false,
+        "args": [
+          "tentacles",
+          "-p",
+          "../tentacles_default_export.zip",
+          "-d",
+          "../OctoBot-Tentacles"
+        ]
+      },
+      {
+        "type": "debugpy",
+        "name": "Polymarket: Update tentacles",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "program": "${workspaceFolder}/OctoBot-Tentacles/Trading/Exchange/polymarket/download.py",
+        "cwd": "${workspaceFolder}/OctoBot-Tentacles/Trading/Exchange/polymarket",
+        "preLaunchTask": "CCXT: Build polymarket exchange python",
+        "presentation": {
+          "hidden": false,
+          "group": "OctoBot-Tentacles-Manager",
+          "order": 36
+        },
+        "justMyCode": false,
+        "args": [],
+        "env": {}
+      }
+    ],
+    "compounds": [
+      {
+        "name": "Generate and Install tentacles",
+        "configurations": [
+          "Generate tentacles from OctoBot-Tentacles",
+          "Install tentacles zip"
+        ],
+        "presentation": {
+          "hidden": false,
+          "group": "OctoBot-Tentacles-Manager",
+          "order": 30
+        },
+        "stopAll": true
+      }
+    ]
+  }

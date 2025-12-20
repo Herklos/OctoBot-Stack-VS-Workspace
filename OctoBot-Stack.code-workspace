@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"terminal.integrated.env.osx": {
+			"PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/Async-Channel:${workspaceFolder}/OctoBot-Tentacles-Manager:${workspaceFolder}/OctoBot-Commons:${workspaceFolder}/OctoBot-Trading:${workspaceFolder}/OctoBot-Backtesting:${workspaceFolder}/OctoBot-Evaluators:${workspaceFolder}/OctoBot-Services:${workspaceFolder}/trading-backend:${workspaceFolder}/OctoBot:${env:PYTHONPATH}"
+		}
+	}
+}
