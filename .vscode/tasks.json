@@ -33,7 +33,7 @@
       "label": "Generate tentacles from OctoBot-Tentacles",
       "type": "shell",
       "command": "${command:python.interpreterPath} start.py tentacles -p ../../tentacles_default_export.zip -d ../OctoBot-Tentacles",
-      "dependsOn": ["Setup PYTHONPATH", "CCXT: Build polymarket exchange python"],
+      "dependsOn": ["Setup PYTHONPATH"],
       "options": {
         "cwd": "${workspaceFolder}/OctoBot",
         "env": {

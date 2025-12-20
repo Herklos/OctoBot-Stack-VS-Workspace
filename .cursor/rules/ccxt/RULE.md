@@ -14,8 +14,31 @@ Exchange TypeScript files in `ccxt/ts/src/*.ts` are automatically transpiled to 
 
 When writing code in exchange files:
 
+**⚠️ CRITICAL: NEVER use ternary operations - they do NOT transpile correctly to Python/Go/PHP/C#**
+
 **NEVER use:**
-- Ternary operations (`condition ? valueA : valueB`) - Use explicit if/else statements
+- **TERNARY OPERATIONS** (`condition ? valueA : valueB`) - **ALWAYS use explicit if/else statements with let variables**
+  - ❌ `const value = condition ? valueA : valueB;`
+  - ❌ `const value = this.safeInteger (market !== undefined ? this.safeDict (market, 'info', {}) : {}, 'key', 0);` (nested ternary in function call)
+  - ❌ `const value = condition1 ? valueA : condition2 ? valueB : valueC;` (nested ternary)
+  - ✅ `let value = valueB; if (condition) { value = valueA; }`
+  - ✅ `let marketInfo = {}; if (market !== undefined) { marketInfo = this.safeDict (market, 'info', {}); } const value = this.safeInteger (marketInfo, 'key', 0);`
+  - **This applies EVERYWHERE: function arguments, variable assignments, return statements, object properties, array elements, etc.**
+  - **This is a hard requirement - ternary operators break transpilation**
+- **TYPE ANNOTATIONS** - **NEVER use type annotations on variables - they break transpilation**
+  - ❌ `let calculatedPrice: number = 0;` (type annotation breaks transpilation)
+  - ❌ `let calculatedPrice: number;` (type annotation breaks transpilation)
+  - ✅ `let calculatedPrice = 0;` (let TypeScript infer the type)
+  - **This is a hard requirement - type annotations break transpilation**
+- **EMPTY VARIABLE DECLARATIONS** - **ALWAYS initialize variables with a default value**
+  - ❌ `let calculatedPrice;` (empty declaration causes transpilation issues)
+  - ✅ `let calculatedPrice = 0;` (initialize with default value)
+  - **This is a hard requirement - empty declarations break transpilation**
+- **NULL CHECKS** - **NEVER use `=== null` - only check for `undefined`**
+  - ❌ `if (value === undefined || value === null)` (null check breaks transpilation)
+  - ❌ `if (value === null)` (null check breaks transpilation)
+  - ✅ `if (value === undefined)` (only check for undefined)
+  - **This is a hard requirement - null checks break transpilation**
 - Complex null checks or optional chaining - Use simple if statements
 - `any[]` type annotation - Omit type or use proper types like `Dict[]`, `string[]`
 - Array mutation methods (`.push()`, `.pop()`, `.shift()`, `.unshift()`) on dictionary values - Build complete arrays conditionally
@@ -27,12 +50,18 @@ When writing code in exchange files:
 **Examples:**
 
 ```typescript
-// ❌ BAD: Ternary operations
+// ❌ BAD: Ternary operations - FORBIDDEN, breaks transpilation
 const timestamp = (ts !== undefined) ? ts * 1000 : undefined;
 const fee = feeNum !== undefined ? feeNum : this.parseNumber ('0.02');
 const symbol = market ? market['symbol'] : undefined;
+const sideEnum = (polymarketSide === 'BUY') ? '0' : '1';
+const expirationValue = (orderType.toUpperCase () === 'GTD') ? signedOrder['expiration'] : '0';
+// ❌ BAD: Ternary in function call arguments
+const quoteDecimals = this.safeInteger (market !== undefined ? this.safeDict (market, 'info', {}) : {}, 'quoteDecimals', 6);
+// ❌ BAD: Nested ternary
+const value = condition1 ? valueA : condition2 ? valueB : valueC;
 
-// ✅ GOOD: Explicit if/else with variables, space before parenthesis
+// ✅ GOOD: Explicit if/else with let variables, space before parenthesis
 let timestamp = undefined;
 if (ts !== undefined) {
     timestamp = ts * 1000;
@@ -44,6 +73,27 @@ if (feeNum !== undefined) {
 let symbol = undefined;
 if (market !== undefined) {
     symbol = market['symbol'];
+}
+let sideEnum = '1';
+if (polymarketSide === 'BUY') {
+    sideEnum = '0';
+}
+let expirationValue = '0';
+if (orderType.toUpperCase () === 'GTD') {
+    expirationValue = signedOrder['expiration'];
+}
+// ✅ GOOD: Extract values before function calls
+let marketInfo = {};
+if (market !== undefined) {
+    marketInfo = this.safeDict (market, 'info', {});
+}
+const quoteDecimals = this.safeInteger (marketInfo, 'quoteDecimals', 6);
+// ✅ GOOD: Nested conditions with explicit if/else
+let value = valueC;
+if (condition1) {
+    value = valueA;
+} else if (condition2) {
+    value = valueB;
 }
 const id = this.safeString (trade, 'id');
 
@@ -77,6 +127,8 @@ When editing exchange files:
 
 **NEVER use:**
 - Imports from `./static_dependencies/ethers/` - Use base `Exchange` class methods (`hash`, `keccak`, `ecdsa`, `ethEncodeStructuredData`)
+  - ❌ `import { TypedDataEncoder } from './static_dependencies/ethers/hash/index.js';`
+  - ✅ Use `this.ethEncodeStructuredData()` from base Exchange class (like hyperliquid, dydx do)
 - Typed arrays (`Uint8Array`, `Int8Array`, etc.) - Use regular arrays (`[]`)
 - Regex literals (`/pattern/`) - Use manual character validation loops
 - `charCodeAt()` - Use character comparisons instead
@@ -216,3 +268,33 @@ async fetchOrder (id: string, symbol: Str = undefined, params = {}) {
 - Matching order: exact first, then broad
 - Reference examples: `ts/src/dydx.ts`, `ts/src/hyperliquid.ts`, `ts/src/cex.ts`
 
+## Precision Handling
+
+When converting decimal amounts to smallest units (e.g., wei, satoshi):
+
+**NEVER:**
+- Hardcode precision values (`'1000000'`, `'1000000000000000000'`)
+- Use `Math.random()` (use `this.microseconds()` instead)
+- Manually construct multipliers (`'1' + '0'.repeat(decimals)`)
+
+**ALWAYS:**
+- Parse precision from market: `market.info.quoteDecimals`/`baseDecimals` or `market.precision.price`/`amount`
+- Use `integerPrecisionToAmount(-decimals)` to get multiplier (10^decimals)
+- Convert to integer: `Precise.stringDiv(Precise.stringMul(amount, multiplier), '1', 0)`
+
+```typescript
+// ❌ BAD
+const USDC_DECIMALS = '1000000';
+const multiplier = '1' + '0'.repeat(decimals);
+
+// ✅ GOOD
+const quoteDecimals = this.safeInteger(market.info, 'quoteDecimals', this.safeInteger(market.precision, 'price', 6));
+const multiplier = this.integerPrecisionToAmount(this.numberToString(-quoteDecimals));
+const amountInSmallestUnit = Precise.stringDiv(Precise.stringMul(amount, multiplier), '1', 0);
+```
+
+**Store precision in market:**
+```typescript
+'precision': { 'amount': 18, 'price': 6 },
+'info': { 'quoteDecimals': 6, 'baseDecimals': 18 },
+```
