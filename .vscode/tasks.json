@@ -19,7 +19,7 @@
     {
       "label": "CCXT: Build polymarket exchange python",
       "type": "shell",
-      "command": "npm run emitAPI polymarket && npm run transpileRest polymarket && npm run transpileRest polymarket",
+      "command": "nvm use 24 && npm run emitAPI polymarket && npm run transpileRest polymarket && npm run transpileWs polymarket",
       "options": {
         "cwd": "${workspaceFolder}/ccxt"
       },

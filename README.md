@@ -4,6 +4,7 @@
 
 ```bash
 python3.10 -m venv venv
+git submodule update --init --recursive --force
 ln -s (pwd)/OctoBot-Tentacles/ OctoBot/tentacles
 ln -s (pwd)/OctoBot-Tentacles/ OctoBot-Trading/tentacles
 ```
