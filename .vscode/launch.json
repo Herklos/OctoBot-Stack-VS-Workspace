@@ -37,7 +37,7 @@
           "-v",
           "-vv",
           "-k",
-          "polymarket and create_and_cancel_limit_orders"
+          "polymarket"
         ],
         "module": "pytest"
       },

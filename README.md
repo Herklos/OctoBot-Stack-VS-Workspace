@@ -17,4 +17,4 @@ Note: Don't forget to pip install requirements.txt and full_requirements.txt bef
 
 #### Debug fetch payload and response
 
-- Add a breakpoint at ccxt/async_support/base/exchange.py:fetch:raw_headers
+- Add a breakpoint at ccxt/async_support/base/exchange.py:fetch:raw_headers (search `# CIMultiDictProxy`)
