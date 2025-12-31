@@ -15,7 +15,9 @@
         },
         "justMyCode": false,
         "args": [],
-        "env": {}
+        "env": {
+          "SHOULD_CHECK_TENTACLES": "true"
+        }
       },
       {
         "type": "debugpy",
@@ -37,7 +39,7 @@
           "-v",
           "-vv",
           "-k",
-          "polymarket"
+          "polymarket and position"
         ],
         "module": "pytest"
       },
@@ -102,7 +104,7 @@
         "presentation": {
           "hidden": false,
           "group": "OctoBot-Tentacles-Manager",
-          "order": 31
+          "order": 38
         },
         "justMyCode": false,
         "args": [
@@ -113,23 +115,29 @@
           "../OctoBot-Tentacles"
         ]
       },
-      ,
       {
         "type": "debugpy",
-        "name": "Generate ccxt tentacles",
+        "name": "OctoBot-Trading tests additional",
         "request": "launch",
         "console": "integratedTerminal",
-        "program": "${workspaceFolder}/OctoBot-Tentacles/Trading/Exchange/polymarket/download.py",
-        "cwd": "${workspaceFolder}/OctoBot-Tentacles/Trading/Exchange/polymarket",
-        "preLaunchTask": "CCXT: Build polymarket exchange python",
+        "cwd": "${workspaceFolder}/OctoBot-Trading",
         "presentation": {
           "hidden": false,
-          "group": "OctoBot-Tentacles-Manager",
-          "order": 32
+          "group": "2.Test",
+          "order": 20
         },
         "justMyCode": false,
-        "args": [],
-        "env": {}
+        "args": [
+          "tests_additional",
+          "--no-header",
+          "--disable-warnings",
+          "--show-capture=no",
+          "-v",
+          "-vv",
+          "-k",
+          "polymarket and position"
+        ],
+        "module": "pytest"
       },
       {
         "type": "debugpy",
@@ -142,7 +150,7 @@
         "presentation": {
           "hidden": false,
           "group": "OctoBot-Tentacles-Manager",
-          "order": 33
+          "order": 32
         },
         "justMyCode": false,
         "args": [
@@ -152,6 +160,23 @@
           "--location",
           "../any_platform.zip"
         ]
+      },
+      {
+        "type": "debugpy",
+        "name": "Generate ccxt tentacles",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "program": "${workspaceFolder}/OctoBot-Tentacles/Trading/Exchange/polymarket/script/download.py",
+        "cwd": "${workspaceFolder}/OctoBot-Tentacles/Trading/Exchange/polymarket",
+        "preLaunchTask": "CCXT: Build polymarket exchange python",
+        "presentation": {
+          "hidden": false,
+          "group": "OctoBot-Tentacles-Manager",
+          "order": 33
+        },
+        "justMyCode": false,
+        "args": [],
+        "env": {}
       },
       {
         "type": "debugpy",
