@@ -67,6 +67,6 @@
 [submodule "crypto-ai-hedge-fund"]
 	path = crypto-ai-hedge-fund
 	url = https://github.com/Drakkar-Software/crypto-ai-hedge-fund
-[submodule "OctoNode"]
-	path = OctoNode
-	url = https://github.com/Herklos/OctoNode
+[submodule "OctoBot-Node"]
+	path = OctoBot-Node
+	url = git@github.com:Drakkar-Software/OctoBot-Node.git
