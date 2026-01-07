@@ -21,6 +21,28 @@
       },
       {
         "type": "debugpy",
+        "name": "Start OctoBot Node",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "module": "uvicorn",
+        "cwd": "${workspaceFolder}/OctoBot-Node",
+        "presentation": {
+          "hidden": false,
+          "group": "1.Run",
+          "order": 2
+        },
+        "justMyCode": false,
+        "args": [
+          "octobot_node.app.main:app",
+          "--workers",
+          "1"
+        ],
+        "env": {
+          
+        }
+      },
+      {
+        "type": "debugpy",
         "name": "OctoBot additional_tests",
         "request": "launch",
         "console": "integratedTerminal",

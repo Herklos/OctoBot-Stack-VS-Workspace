@@ -5,3 +5,5 @@ venv
 *.zip
 
 .env
+
+.DS_Store
