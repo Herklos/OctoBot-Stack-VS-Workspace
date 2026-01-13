@@ -24,7 +24,7 @@
         "name": "Start OctoBot Node",
         "request": "launch",
         "console": "integratedTerminal",
-        "module": "uvicorn",
+        "program": "${workspaceFolder}/OctoBot-Node/start.py",
         "cwd": "${workspaceFolder}/OctoBot-Node",
         "presentation": {
           "hidden": false,
@@ -33,13 +33,10 @@
         },
         "justMyCode": false,
         "args": [
-          "octobot_node.app.main:app",
-          "--workers",
+          "--master",
+          "--consumers",
           "1"
         ],
-        "env": {
-          
-        }
       },
       {
         "type": "debugpy",
@@ -110,6 +107,30 @@
           "-v",
           "-vv",
           "-s",
+          "-k",
+          " "
+        ],
+        "module": "pytest"
+      },
+      {
+        "type": "debugpy",
+        "name": "OctoBot-Node tests",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}/OctoBot-Node",
+        "presentation": {
+          "hidden": false,
+          "group": "2.Test",
+          "order": 22
+        },
+        "justMyCode": false,
+        "args": [
+          "tests",
+          "--no-header",
+          "--disable-warnings",
+          "--show-capture=no",
+          "-v",
+          "-vv",
           "-k",
           " "
         ],

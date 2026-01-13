@@ -7,6 +7,7 @@ python3.10 -m venv venv
 git submodule update --init --recursive --force
 ln -s (pwd)/OctoBot-Tentacles/ OctoBot/tentacles
 ln -s (pwd)/OctoBot-Tentacles/ OctoBot-Trading/tentacles
+ln -s (pwd)/OctoBot-Tentacles/ OctoBot-Node/tentacles
 ```
 
 Note: Don't forget to pip install requirements.txt and full_requirements.txt before using any package.
