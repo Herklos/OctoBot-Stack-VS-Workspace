@@ -100,7 +100,7 @@
         },
         "justMyCode": false,
         "args": [
-          "tentacles/Trading/Mode",
+          "tentacles/Trading/Mode/index_trading_mode",
           "--no-header",
           "--disable-warnings",
           "--show-capture=no",

@@ -19,3 +19,7 @@ Note: Don't forget to pip install requirements.txt and full_requirements.txt bef
 #### Debug fetch payload and response
 
 - Add a breakpoint at ccxt/async_support/base/exchange.py:fetch:raw_headers (search `# CIMultiDictProxy`)
+
+### OctoBot-Tentacles 'origin_package' error when loading tentacles
+
+- Remove any files or folder that are not architectured as an OctoBot tentacle like `rm -rf .git/cursor`
