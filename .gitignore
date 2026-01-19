@@ -3,7 +3,10 @@ venv
 *.yml
 *.yaml
 *.zip
+.*.json
 
 .env
-
+.debug
 .DS_Store
+
+__pycache__

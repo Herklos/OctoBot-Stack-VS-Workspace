@@ -100,7 +100,7 @@
         },
         "justMyCode": false,
         "args": [
-          "tentacles/Trading/Mode/index_trading_mode",
+          "tentacles/Trading/Mode/",
           "--no-header",
           "--disable-warnings",
           "--show-capture=no",
@@ -160,7 +160,7 @@
       },
       {
         "type": "debugpy",
-        "name": "OctoBot-Trading tests additional",
+        "name": "OctoBot-Trading tests",
         "request": "launch",
         "console": "integratedTerminal",
         "cwd": "${workspaceFolder}/OctoBot-Trading",
@@ -168,6 +168,30 @@
           "hidden": false,
           "group": "2.Test",
           "order": 20
+        },
+        "justMyCode": false,
+        "args": [
+          "tests",
+          "--no-header",
+          "--disable-warnings",
+          "--show-capture=no",
+          "-v",
+          "-vv",
+          "-k",
+          "portfolio_value"
+        ],
+        "module": "pytest"
+      },
+      {
+        "type": "debugpy",
+        "name": "OctoBot-Trading tests additional",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}/OctoBot-Trading",
+        "presentation": {
+          "hidden": false,
+          "group": "2.Test",
+          "order": 21
         },
         "justMyCode": false,
         "args": [

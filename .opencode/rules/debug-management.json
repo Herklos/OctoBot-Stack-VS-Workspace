@@ -1,0 +1,6 @@
+{
+  "name": "Debug Folder Management",
+  "description": "Allows agents to manage the .agents/.debug/ folder, which contains debugging and testing scripts for project changes. This folder includes test suites, documentation, and tools for verifying integrations. Agents can organize files, modify scripts, add tests, and update docs to support ongoing development and debugging efforts. Use this folder for running diagnostic tests, creating new test cases, and documenting findings related to the project.",
+  "capabilities": ["file_management", "folder_organization"],
+  "scope": ".agents/.debug/"
+}
