@@ -7,7 +7,7 @@
       "command": "echo 'PYTHONPATH configuration defined in task options.env'",
       "options": {
         "env": {
-          "PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/Async-Channel:${workspaceFolder}/OctoBot-Tentacles-Manager:${workspaceFolder}/OctoBot-Commons:${workspaceFolder}/OctoBot-Trading:${workspaceFolder}/OctoBot-Backtesting:${workspaceFolder}/OctoBot-Evaluators:${workspaceFolder}/OctoBot-Services:${workspaceFolder}/trading-backend:${workspaceFolder}/OctoBot:${env:PYTHONPATH}"
+          "PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/OctoBot/packages/async_channel:${workspaceFolder}/OctoBot/packages/tentacles_manager:${workspaceFolder}/OctoBot/packages/commons:${workspaceFolder}/OctoBot/packages/trading:${workspaceFolder}/OctoBot/packages/backtesting:${workspaceFolder}/OctoBot/packages/evaluators:${workspaceFolder}/OctoBot/packages/services:${workspaceFolder}/OctoBot/packages/trading_backend:${workspaceFolder}/OctoBot/packages/agents:${workspaceFolder}/OctoBot:${env:PYTHONPATH}"
         }
       },
       "problemMatcher": [],
@@ -30,14 +30,14 @@
       }
     },
     {
-      "label": "Generate tentacles from OctoBot-Tentacles",
+      "label": "generate-tentacles-zip",
       "type": "shell",
-      "command": "${command:python.interpreterPath} start.py tentacles -p ../../tentacles_default_export.zip -d ../OctoBot-Tentacles",
+      "command": "${workspaceFolder}/venv/bin/python start.py tentacles -p tentacles_default_export.zip -d packages/tentacles",
       "dependsOn": ["Setup PYTHONPATH"],
       "options": {
         "cwd": "${workspaceFolder}/OctoBot",
         "env": {
-          "PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/Async-Channel:${workspaceFolder}/OctoBot-Tentacles-Manager:${workspaceFolder}/OctoBot-Commons:${workspaceFolder}/OctoBot-Trading:${workspaceFolder}/OctoBot-Backtesting:${workspaceFolder}/OctoBot-Evaluators:${workspaceFolder}/OctoBot-Services:${workspaceFolder}/trading-backend:${workspaceFolder}/OctoBot:${env:PYTHONPATH}"
+          "PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/OctoBot/packages/async_channel:${workspaceFolder}/OctoBot/packages/tentacles_manager:${workspaceFolder}/OctoBot/packages/commons:${workspaceFolder}/OctoBot/packages/trading:${workspaceFolder}/OctoBot/packages/backtesting:${workspaceFolder}/OctoBot/packages/evaluators:${workspaceFolder}/OctoBot/packages/services:${workspaceFolder}/OctoBot/packages/trading_backend:${workspaceFolder}/OctoBot/packages/agents:${workspaceFolder}/OctoBot:${env:PYTHONPATH}"
         }
       },
       "problemMatcher": [],

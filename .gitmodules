@@ -1,45 +1,15 @@
 [submodule "OctoBot"]
 	path = OctoBot
 	url = git@github.com:Drakkar-Software/OctoBot.git
-[submodule "OctoBot-Backtesting"]
-	path = OctoBot-Backtesting
-	url = git@github.com:Drakkar-Software/OctoBot-Backtesting.git
-[submodule "OctoBot-Tentacles"]
-	path = OctoBot-Tentacles
-	url = git@github.com:Drakkar-Software/OctoBot-Tentacles.git
-[submodule "OctoBot-Commons"]
-	path = OctoBot-Commons
-	url = git@github.com:Drakkar-Software/OctoBot-Commons.git
-[submodule "OctoBot-Binary"]
-	path = OctoBot-Binary
-	url = git@github.com:Drakkar-Software/OctoBot-Binary.git
-[submodule "Async-Channel"]
-	path = Async-Channel
-	url = git@github.com:Drakkar-Software/Async-Channel.git
-[submodule "OctoBot-Evaluators"]
-	path = OctoBot-Evaluators
-	url = git@github.com:Drakkar-Software/OctoBot-Evaluators.git
-[submodule "OctoBot-Tentacles-Manager"]
-	path = OctoBot-Tentacles-Manager
-	url = git@github.com:Drakkar-Software/OctoBot-Tentacles-Manager.git
-[submodule "OctoBot-Trading"]
-	path = OctoBot-Trading
-	url = git@github.com:Drakkar-Software/OctoBot-Trading.git
-[submodule "trading-backend"]
-	path = trading-backend
-	url = git@github.com:Drakkar-Software/trading-backend.git
 [submodule "tulipy"]
 	path = tulipy
 	url = git@github.com:Drakkar-Software/tulipy.git
-[submodule "OctoBot-Services"]
-	path = OctoBot-Services
-	url = git@github.com:Drakkar-Software/OctoBot-Services.git
 [submodule "OctoBot-Script"]
 	path = OctoBot-Script
 	url = git@github.com:Drakkar-Software/OctoBot-Script.git
-[submodule "OctoBOt-Market-Making"]
-	path = OctoBOt-Market-Making
-	url = git@github.com:Drakkar-Software/OctoBOt-Market-Making.git
+[submodule "OctoBot-Market-Making"]
+	path = OctoBot-Market-Making
+	url = git@github.com:Drakkar-Software/OctoBot-Market-Making.git
 [submodule "OctoBot-Prediction-Market"]
 	path = OctoBot-Prediction-Market
 	url = git@github.com:Drakkar-Software/OctoBot-Prediction-Market.git
@@ -52,9 +22,6 @@
 [submodule "chaquopy"]
 	path = chaquopy
 	url = git@github.com:Drakkar-Software/chaquopy.git
-[submodule "Package-Version-Manager"]
-	path = Package-Version-Manager
-	url = git@github.com:Drakkar-Software/Package-Version-Manager.git
 [submodule ".github"]
 	path = .github
 	url = https://github.com/Drakkar-Software/.github

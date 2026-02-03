@@ -1,6 +1,7 @@
 {
 	"version": "0.2.0",
 	"configurations": [
+    
       {
         "type": "debugpy",
         "name": "Start OctoBot",
@@ -14,9 +15,38 @@
           "order": 1
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [],
         "env": {
-          "SHOULD_CHECK_TENTACLES": "true"
+          "FORCE_BACKTESTING_LOGS": "true",
+          "SHOULD_CHECK_TENTACLES": "true",
+          "PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/OctoBot/packages/async_channel:${workspaceFolder}/OctoBot/packages/tentacles_manager:${workspaceFolder}/OctoBot/packages/commons:${workspaceFolder}/OctoBot/packages/trading:${workspaceFolder}/OctoBot/packages/backtesting:${workspaceFolder}/OctoBot/packages/evaluators:${workspaceFolder}/OctoBot/packages/services:${workspaceFolder}/OctoBot/packages/trading_backend:${workspaceFolder}/OctoBot/packages/agents:${workspaceFolder}/OctoBot:${env:PYTHONPATH}"
+        }
+      },
+      {
+        "type": "debugpy",
+        "name": "Start backtesting",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "program": "${workspaceFolder}/OctoBot/start.py",
+        "cwd": "${workspaceFolder}/OctoBot",
+        "presentation": {
+          "hidden": false,
+          "group": "1.Run",
+          "order": 1
+        },
+        "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
+        "args": [
+          "--backtesting",
+          "--backtesting-files",
+          "ExchangeHistoryDataCollector_1770310474.188412.data",
+          "SocialHistoryDataCollector_1770309315.085579.data"
+        ],
+        "env": {
+          "FORCE_BACKTESTING_LOGS": "true",
+          "SHOULD_CHECK_TENTACLES": "true",
+          "PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/OctoBot/packages/async_channel:${workspaceFolder}/OctoBot/packages/tentacles_manager:${workspaceFolder}/OctoBot/packages/commons:${workspaceFolder}/OctoBot/packages/trading:${workspaceFolder}/OctoBot/packages/backtesting:${workspaceFolder}/OctoBot/packages/evaluators:${workspaceFolder}/OctoBot/packages/services:${workspaceFolder}/OctoBot/packages/trading_backend:${workspaceFolder}/OctoBot/packages/agents:${workspaceFolder}/OctoBot:${env:PYTHONPATH}"
         }
       },
       {
@@ -24,14 +54,15 @@
         "name": "Start OctoBot Node",
         "request": "launch",
         "console": "integratedTerminal",
-        "program": "${workspaceFolder}/OctoBot-Node/start.py",
-        "cwd": "${workspaceFolder}/OctoBot-Node",
+        "program": "${workspaceFolder}/OctoBot/packages/node/start.py",
+        "cwd": "${workspaceFolder}/OctoBot/packages/node",
         "presentation": {
           "hidden": false,
           "group": "1.Run",
           "order": 2
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
           "--master",
           "--consumers",
@@ -50,6 +81,7 @@
           "order": 20
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
           "additional_tests",
           "--no-header",
@@ -75,6 +107,7 @@
           "order": 20
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
           "tests",
           "--no-header",
@@ -89,7 +122,7 @@
       },
       {
         "type": "debugpy",
-        "name": "OctoBot-Tentacles tests trading modes",
+        "name": "Tentacles tests trading modes",
         "request": "launch",
         "console": "integratedTerminal",
         "cwd": "${workspaceFolder}/OctoBot",
@@ -99,8 +132,35 @@
           "order": 21
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
-          "tentacles/Trading/Mode/",
+          "tentacles/Trading/Mode/index_trading_mode/",
+          "--no-header",
+          "--disable-warnings",
+          "--show-capture=no",
+          "-v",
+          "-vv",
+          "-s",
+          "-k",
+          " "
+        ],
+        "module": "pytest"
+      },
+      {
+        "type": "debugpy",
+        "name": "Tentacles tests service",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}/OctoBot",
+        "presentation": {
+          "hidden": false,
+          "group": "2.Test",
+          "order": 22
+        },
+        "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
+        "args": [
+          "tentacles/Services/Services_bases/",
           "--no-header",
           "--disable-warnings",
           "--show-capture=no",
@@ -121,9 +181,10 @@
         "presentation": {
           "hidden": false,
           "group": "2.Test",
-          "order": 22
+          "order": 23
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
           "tests",
           "--no-header",
@@ -138,7 +199,7 @@
       },
       {
         "type": "debugpy",
-        "name": "Generate tentacles from OctoBot-Tentacles",
+        "name": "generate-tentacles-zip",
         "request": "launch",
         "console": "integratedTerminal",
         "program": "${workspaceFolder}/OctoBot/start.py",
@@ -150,6 +211,7 @@
           "order": 38
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
           "tentacles",
           "-p",
@@ -160,16 +222,17 @@
       },
       {
         "type": "debugpy",
-        "name": "OctoBot-Trading tests",
+        "name": "Trading tests",
         "request": "launch",
         "console": "integratedTerminal",
-        "cwd": "${workspaceFolder}/OctoBot-Trading",
+        "cwd": "${workspaceFolder}/OctoBot/packages/trading",
         "presentation": {
           "hidden": false,
           "group": "2.Test",
           "order": 20
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
           "tests",
           "--no-header",
@@ -187,13 +250,14 @@
         "name": "OctoBot-Trading tests additional",
         "request": "launch",
         "console": "integratedTerminal",
-        "cwd": "${workspaceFolder}/OctoBot-Trading",
+        "cwd": "${workspaceFolder}/OctoBot/packages/trading",
         "presentation": {
           "hidden": false,
           "group": "2.Test",
           "order": 21
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
           "tests_additional",
           "--no-header",
@@ -212,7 +276,7 @@
         "request": "launch",
         "console": "integratedTerminal",
         "program": "${workspaceFolder}/OctoBot/start.py",
-        "preLaunchTask": "Generate tentacles from OctoBot-Tentacles",
+        "preLaunchTask": "generate-tentacles-zip",
         "cwd": "${workspaceFolder}/OctoBot",
         "presentation": {
           "hidden": false,
@@ -220,12 +284,13 @@
           "order": 32
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
           "tentacles",
           "-i",
           "--all",
           "--location",
-          "../any_platform.zip"
+          "output/any_platform.zip"
         ]
       },
       {
@@ -233,8 +298,8 @@
         "name": "Generate ccxt tentacles",
         "request": "launch",
         "console": "integratedTerminal",
-        "program": "${workspaceFolder}/OctoBot-Tentacles/Trading/Exchange/polymarket/script/download.py",
-        "cwd": "${workspaceFolder}/OctoBot-Tentacles/Trading/Exchange/polymarket",
+        "program": "${workspaceFolder}/OctoBot/packages/tentacles/Trading/Exchange/polymarket/script/download.py",
+        "cwd": "${workspaceFolder}/OctoBot/packages/tentacles/Trading/Exchange/polymarket",
         "preLaunchTask": "CCXT: Build polymarket exchange python",
         "presentation": {
           "hidden": false,
@@ -242,6 +307,7 @@
           "order": 33
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [],
         "env": {}
       },
@@ -258,13 +324,14 @@
           "order": 34
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
           "tentacles",
           "-e",
           "../../OctoBot-Tentacles",
           "OctoBot-Default-Tentacles",
           "-d",
-          "../OctoBot/tentacles"
+          "../OctoBot/packages/tentacles"
         ]
       },
       {
@@ -280,6 +347,7 @@
           "order": 35
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
           "tentacles",
           "--repair",
@@ -289,7 +357,7 @@
       },
       {
         "type": "debugpy",
-        "name": "Export OctoBot-Tentacles to zip",
+        "name": "Export Tentacles to zip",
         "request": "launch",
         "console": "integratedTerminal",
         "program": "${workspaceFolder}/OctoBot/start.py",
@@ -300,6 +368,7 @@
           "order": 36
         },
         "justMyCode": false,
+        "python": "${workspaceFolder}/venv/bin/python",
         "args": [
           "tentacles",
           "-p",
