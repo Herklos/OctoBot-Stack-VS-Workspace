@@ -1,5 +1,13 @@
 {
 	"version": "0.2.0",
+	"inputs": [
+		{
+			"id": "exchangeName",
+			"description": "Exchange name to build (e.g., polymarket, bisq)",
+			"default": "polymarket",
+			"type": "promptString"
+		}
+	],
 	"configurations": [
     
       {
@@ -134,7 +142,7 @@
         "justMyCode": false,
         "python": "${workspaceFolder}/venv/bin/python",
         "args": [
-          "tentacles/Trading/Mode/index_trading_mode/",
+          "tentacles/Trading/Mode/profile_copy_trading_mode",
           "--no-header",
           "--disable-warnings",
           "--show-capture=no",
@@ -266,7 +274,7 @@
           "-v",
           "-vv",
           "-k",
-          "polymarket and position"
+          "bisq"
         ],
         "module": "pytest"
       },
@@ -298,9 +306,9 @@
         "name": "Generate ccxt tentacles",
         "request": "launch",
         "console": "integratedTerminal",
-        "program": "${workspaceFolder}/OctoBot/packages/tentacles/Trading/Exchange/polymarket/script/download.py",
-        "cwd": "${workspaceFolder}/OctoBot/packages/tentacles/Trading/Exchange/polymarket",
-        "preLaunchTask": "CCXT: Build polymarket exchange python",
+        "program": "${workspaceFolder}/download_all_exchanges.py",
+        "cwd": "${workspaceFolder}",
+        "preLaunchTask": "CCXT: Build exchange python",
         "presentation": {
           "hidden": false,
           "group": "OctoBot-Tentacles-Manager",

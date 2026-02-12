@@ -1,5 +1,13 @@
 {
   "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "exchangeName",
+      "description": "Exchange name to build (e.g., polymarket, bisq)",
+      "default": "polymarket",
+      "type": "promptString"
+    }
+  ],
   "tasks": [
     {
       "label": "Setup PYTHONPATH",
@@ -17,9 +25,9 @@
       }
     },
     {
-      "label": "CCXT: Build polymarket exchange python",
+      "label": "CCXT: Build exchange python",
       "type": "shell",
-      "command": "nvm use 24 && npm run emitAPI polymarket && npm run transpileRest polymarket && npm run transpileWs polymarket",
+      "command": "nvm use 24 && npm run export-exchanges && npm run tsBuild && npm run emitAPIPy && npm run transpileRest ${input:exchangeName} && npm run transpileWs ${input:exchangeName}",
       "options": {
         "cwd": "${workspaceFolder}/ccxt"
       },
